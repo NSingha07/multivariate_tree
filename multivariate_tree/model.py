@@ -81,7 +81,7 @@ def find_best_split(indices, X, Y):
                 best_left_sse, best_right_sse = left_sse, right_sse
 
     if best_feature is None:
-        print("No valid split found.")
+        #print("No valid split found.")
         return None, None, None, (None, None), (None, None)
 
     #print(f"Best split -> Feature: {best_feature}, Value: {best_value}, SSE Reduction: {current_sse - (best_left_sse + best_right_sse)}")

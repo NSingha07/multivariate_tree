@@ -9,15 +9,32 @@ shutil.rmtree("histograms", ignore_errors=True)
 os.makedirs("histograms", exist_ok=True)
 
 def generate_leaf_histogram(leaf_values, leaf_id):
-    """Generates and saves a histogram for a given leaf node."""
+    """Generates and saves a histogram for a given leaf node, using up to 20 distinct colors.
+       If the number of target variables exceeds 20, all bars will be blue.
+    """
     plt.figure(figsize=(2, 1))  # Small size for embedding
 
-    # Use multiple colors for different targets
-    colors = ['blue', 'green', 'red', 'purple', 'orange', 'cyan']
-    plt.bar(range(len(leaf_values)), leaf_values, color=colors[:len(leaf_values)])
+    # Define a palette of at least 20 distinct colors
+    palette = [
+        'blue', 'green', 'red', 'purple', 'orange', 'cyan', 'magenta', 'yellow', 
+        'lime', 'pink', 'brown', 'gray', 'olive', 'teal', 'navy', 'maroon', 
+        'silver', 'gold', 'orchid', 'turquoise'
+    ]
+
+    num_targets = len(leaf_values)
+    
+    if num_targets <= 20:
+        # Use a unique color for each target
+        bar_colors = palette[:num_targets]
+    else:
+        # If there are more than 20 targets, color them all blue
+        bar_colors = ['blue'] * num_targets
+
+    # Create the bar chart
+    plt.bar(range(num_targets), leaf_values, color=bar_colors)
 
     # Optional: Add labels to bars
-    plt.xticks(range(len(leaf_values)), [f"T{i}" for i in range(len(leaf_values))], fontsize=5)
+    plt.xticks(range(num_targets), [f"T{i}" for i in range(num_targets)], fontsize=5)
     plt.yticks([])  # Hide y-axis labels
     plt.title(f"Leaf {leaf_id}", fontsize=6)
 
@@ -40,8 +57,14 @@ def visualize_tree_graphviz(node, dot=None, parent=None, edge_label="", leaf_id=
         dot.node(str(id(node)), label=node_label, shape="box", image=hist_path)  # Embed histogram
         leaf_id[0] += 1  # Increment unique leaf counter
     else:
+        # Determine the format for split_value: use 2 decimal places if numeric, else just convert to string.
+        if isinstance(node.split_value, (int, float)):
+            split_val_str = f"{node.split_value:.2f}"
+        else:
+            split_val_str = str(node.split_value)
+            
         # Internal split node: Include feature, split value, SSE, and sample count
-        node_label = (f"{node.split_feature}\n<= {node.split_value:.2f}\n"
+        node_label = (f"{node.split_feature}\n<= {split_val_str}\n"
                       f"SSE: {node.sse:.2f}\nSamples: {len(node.indices)}")
         dot.node(str(id(node)), label=node_label, shape="ellipse")
 
@@ -54,3 +77,4 @@ def visualize_tree_graphviz(node, dot=None, parent=None, edge_label="", leaf_id=
         visualize_tree_graphviz(node.right, dot, id(node), edge_label="Right", leaf_id=leaf_id)
 
     return dot
+ 

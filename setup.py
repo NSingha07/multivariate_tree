@@ -4,8 +4,8 @@ setup(
     name="multivariate_tree",
     version="0.1.0",
     description="Multivariate Regression Tree Model Package",
-    author="Your Name",
-    author_email="your.email@example.com",
+    author="Nitul Singha",
+    author_email="nitulsingha07@gmail.com",
     packages=find_packages(),
     install_requires=[
         "matplotlib",

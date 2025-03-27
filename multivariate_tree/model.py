@@ -34,7 +34,7 @@ def compute_mean_and_sse(indices, Y):
         for j in range(d):
             diff = Y[i][j] - mean_vec[j]
             sse += diff * diff
-    print(f"SSE: {sse}")
+    #print(f"SSE: {sse}")
 
     return mean_vec, sse
 
@@ -73,7 +73,7 @@ def find_best_split(indices, X, Y):
             _, right_sse = compute_mean_and_sse(right_idx, Y)
             total_sse = left_sse + right_sse
 
-            print(f"Feature: {feature}, Value: {val}, Left SSE: {left_sse}, Right SSE: {right_sse}, Total SSE: {total_sse}")
+            #print(f"Feature: {feature}, Value: {val}, Left SSE: {left_sse}, Right SSE: {right_sse}, Total SSE: {total_sse}")
 
             if total_sse < best_left_sse + best_right_sse:
                 best_feature, best_value = feature, val
@@ -84,7 +84,7 @@ def find_best_split(indices, X, Y):
         print("No valid split found.")
         return None, None, None, (None, None), (None, None)
 
-    print(f"Best split -> Feature: {best_feature}, Value: {best_value}, SSE Reduction: {current_sse - (best_left_sse + best_right_sse)}")
+    #print(f"Best split -> Feature: {best_feature}, Value: {best_value}, SSE Reduction: {current_sse - (best_left_sse + best_right_sse)}")
     return best_feature, best_value, None, (best_left_idx, best_right_idx), (best_left_sse, best_right_sse)
 
 
@@ -180,7 +180,7 @@ def nrmse(y_true, y_pred):
 
 def evaluate_model(tree, X_test, Y):
     """Evaluates the trained MRT model using print statements."""
-    print("\nEvaluating Model...")
+    #print("\nEvaluating Model...")
 
     predictions = [predict(tree, x) for x in X_test]
 
@@ -188,10 +188,10 @@ def evaluate_model(tree, X_test, Y):
     r2 = r2_score(Y, predictions)
     error_nrmse = nrmse(Y, predictions)
 
-    print(f"\nEvaluation Results:")
-    print(f"MSE: {mse:.4f}")
-    print(f"R² Score: {r2:.4f}")
-    print(f"NRMSE: {error_nrmse:.4f}")
+    #print(f"\nEvaluation Results:")
+    #print(f"MSE: {mse:.4f}")
+    #print(f"R² Score: {r2:.4f}")
+    #print(f"NRMSE: {error_nrmse:.4f}")
 
     return {
         'MSE': mse,

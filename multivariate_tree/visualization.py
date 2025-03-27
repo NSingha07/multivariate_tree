@@ -77,4 +77,40 @@ def visualize_tree_graphviz(node, dot=None, parent=None, edge_label="", leaf_id=
         visualize_tree_graphviz(node.right, dot, id(node), edge_label="Right", leaf_id=leaf_id)
 
     return dot
- 
+
+import matplotlib.pyplot as plt
+from .model import build_tree, evaluate_model
+
+def plot_maxdepth_vs_r2(X_train, Y_train, X_test, Y_test, max_depth_values, 
+                        min_samples_split=2, min_sse_reduction=0.01):
+    """
+    For each maximum depth in max_depth_values:
+      - Build a tree using the training data with that max_depth.
+      - Evaluate the tree on test data to obtain the R² score.
+    Then plots a line chart of max_depth versus R² score.
+    
+    Parameters:
+        X_train, Y_train: Training data.
+        X_test, Y_test: Test data.
+        max_depth_values: A list of maximum depth values to try.
+        min_samples_split: Minimum number of samples to consider a split.
+        min_sse_reduction: Minimum SSE reduction required to perform a split.
+    """
+    r2_list = []
+    
+    for max_depth in max_depth_values:
+        tree = build_tree(X_train, Y_train, max_depth=max_depth, 
+                          min_samples_split=min_samples_split, 
+                          min_sse_reduction=min_sse_reduction)
+        eval_results = evaluate_model(tree, X_test, Y_test)
+        r2 = eval_results['R2 Score']
+        r2_list.append(r2)
+        print(f"Max Depth: {max_depth}, R² Score: {r2:.4f}")
+    
+    plt.figure(figsize=(8, 6))
+    plt.plot(max_depth_values, r2_list, marker='o', linestyle='-')
+    plt.xlabel("Max Depth")
+    plt.ylabel("R² Score")
+    plt.title("Max Depth vs R² Score")
+    plt.grid(True)
+    plt.show()

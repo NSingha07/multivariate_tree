@@ -14,4 +14,5 @@ from .model import (
 from .visualization import (
     generate_leaf_histogram,
     visualize_tree_graphviz,
+    plot_maxdepth_vs_r2,  # Newly added function
 )

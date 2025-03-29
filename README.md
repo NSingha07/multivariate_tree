@@ -1,7 +1,7 @@
 
 
-```markdown
-# Multivariate Regression Tree (MRT) Package
+
+# Multivariate Regression Tree (MRT): A python Package
 
 This package implements methods for constructing, evaluating, and visualizing **Multivariate Regression Trees (MRT)**. MRT
 is a statistical technique developed by De'ath (2002) for exploring, describing, and predicting relationships between

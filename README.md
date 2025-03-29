@@ -3,9 +3,13 @@
 ```markdown
 # Multivariate Regression Tree (MRT) Package
 
-This package implements methods for constructing, evaluating, and visualizing **Multivariate Regression Trees (MRT)**. MRT is a statistical technique developed by De'ath (2002) for exploring, describing, and predicting relationships between multispecies data and environmental characteristics.
+This package implements methods for constructing, evaluating, and visualizing **Multivariate Regression Trees (MRT)**. MRT
+is a statistical technique developed by De'ath (2002) for exploring, describing, and predicting relationships between
+multispecies data and environmental characteristics.
 
-Multivariate regression trees form clusters of sites by repeatedly splitting the data with simple rules based on environmental variables. Each split minimizes the dissimilarity of sites within clusters, and the final tree provides both a predictive model and an ecological interpretation of species assemblages relative to environmental conditions.
+Multivariate regression trees form clusters of sites by repeatedly splitting the data with simple rules based on
+environmental variables. Each split minimizes the dissimilarity of sites within clusters, and the final tree provides
+ both a predictive model and an ecological interpretation of species assemblages relative to environmental conditions.
 
 ## Background
 

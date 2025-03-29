@@ -28,9 +28,17 @@ are particularly useful for:
 Clone the repository and install the package. You can install it in editable mode for development.
 
 ```bash
-git clone https://github.com/yourusername/multivariate_tree.git
-cd multivariate_tree
-pip install -e .
+import os
+
+GITHUB_TOKEN = "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"
+REPO_URL = "github.com/NSingha07/multivariate_tree.git"
+
+# Clone the repo using HTTPS with authentication
+os.system(f"git clone https://{GITHUB_TOKEN}@{REPO_URL}")
+
+# Navigate to the MRT package directory
+os.chdir("/content/multivariate_tree")
+!pip install .
 ```
 
 ## Package Structure
@@ -47,7 +55,25 @@ multivariate_tree/
     ├── model.py
     └── visualization.py
 ```
+---
 
+## Dependencies
+
+This package requires the following libraries:
+
+- **pandas**: For data manipulation and DataFrame operations.
+- **numpy**: For numerical operations and array manipulation.
+- **scikit-learn**: For data splitting and additional machine learning utilities.
+- **matplotlib**: For plotting and visualizations.
+- **graphviz**: For generating and rendering tree visualizations.
+- **os & shutil**: (Built-in Python modules) for file and directory operations.
+- **google.colab**: Only needed if you are running the package in Google Colab.
+
+You can install the required external packages using pip:
+
+```bash
+pip install pandas numpy scikit-learn matplotlib graphviz
+```
 - **model.py** contains the core functions for building and evaluating the MRT model.
 - **visualization.py** contains functions for visualizing the MRT (including leaf histograms and tree graphs) as well as plotting performance metrics (e.g., max depth vs R²).
 
@@ -118,6 +144,12 @@ from multivariate_tree import visualize_tree_graphviz
 dot = visualize_tree_graphviz(tree)
 # Render and display the tree as a PNG file (this will save the file as "mrt_tree.png")
 dot.render("mrt_tree", format="png", cleanup=True)
+
+
+from google.colab import files  # If using Google Colab
+
+files.download("mrt_tree.png")  # Downloads the file
+
 ```
 
 ### 3. Plotting Maximum Depth vs R² Score
@@ -153,6 +185,7 @@ leaf_values = [1.0, 2.5, 0.5]  # Replace with the actual prediction vector from 
 leaf_id = 0
 hist_path = generate_leaf_histogram(leaf_values, leaf_id)
 print("Leaf histogram saved at:", hist_path)
+files.download("histograms/leaf_0.png")
 ```
 
 ## Full Strength of the Package

@@ -16,13 +16,13 @@ def generate_leaf_histogram(leaf_values, leaf_id):
 
     # Define a palette of at least 20 distinct colors
     palette = [
-        'blue', 'green', 'red', 'purple', 'orange', 'cyan', 'magenta', 'yellow', 
-        'lime', 'pink', 'brown', 'gray', 'olive', 'teal', 'navy', 'maroon', 
+        'blue', 'green', 'red', 'purple', 'orange', 'cyan', 'magenta', 'yellow',
+        'lime', 'pink', 'brown', 'gray', 'olive', 'teal', 'navy', 'maroon',
         'silver', 'gold', 'orchid', 'turquoise'
     ]
 
     num_targets = len(leaf_values)
-    
+
     if num_targets <= 20:
         # Use a unique color for each target
         bar_colors = palette[:num_targets]

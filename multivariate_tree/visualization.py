@@ -38,6 +38,11 @@ def generate_leaf_histogram(leaf_values, leaf_id):
     plt.yticks([])  # Hide y-axis labels
     plt.title(f"Leaf {leaf_id}", fontsize=6)
 
+    # Set y-axis tick labels: compute max value and set 5 tick marks from 0 to max
+    ymax = max(leaf_values)
+    yticks = np.linspace(0, ymax, num=5)
+    plt.yticks(yticks, fontsize=5)
+
     # Save the histogram
     hist_path = f"histograms/leaf_{leaf_id}.png"
     plt.savefig(hist_path, dpi=100, bbox_inches="tight")

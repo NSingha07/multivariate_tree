@@ -213,10 +213,20 @@ For more detailed documentation on each function, please refer to the inline com
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+## Acknowledgments  
 
-- **De'ath, G. (2002)** for developing the original MRT method.
-- The example dataset provided in Appendix 1 and other resources used for testing.
+We gratefully acknowledge the pioneering work of [De'ath (2002)](#citation) in developing Multivariate Regression Trees, which form the statistical foundation of this package. We also thank the open-source community for their contributions to the libraries that have enabled this work.  
+
+The dataset used in this analysis is sourced from *Legendre & Legendre (2012, Fig. 8.22)* [@Legendre_2012] and is publicly available. The dataset can be accessed at the following link:  
+
+📄 **[Multivariate Regression Tree Analysis](http://numericalecology.com/documents_enseignement/Multivariate_regression_tree_analysis.pdf)**  
+*(Paper: "Multivariate regression tree analysis (MRT) for the iAtlantic workshop, Pierre Legendre, Université de Montréal, May 2021")*  
+
+## References  
+
+- De'ath, G. (2002). *Multivariate regression trees: a new technique for modeling species–environment relationships*. Ecology, 83(4), 1105-1117.  
+- Legendre, P., & Legendre, L. (2012). *Numerical Ecology* (3rd ed.). Elsevier.  
+
 
 ## Contact
 

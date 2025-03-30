@@ -91,25 +91,25 @@ from multivariate_tree import build_tree, evaluate_model, print_tree
 # For demonstration, we create sample data:
 import numpy as np
 
-# Create synthetic data for Y (response variables) and X (predictors)
-# Here Y has 3 target variables and X has some environmental predictors.
-Y = np.array([
+# Create DataFrame for Y (target variables)
+data_y = np.array([
     [0.1910978, 1.5642915, 1.3534104],
     [0.5743539, 1.4040023, 0.7107540],
-    [0.0,       0.0,       1.6401854],
+    [0.0000000, 0.0000000, 1.6401854],
     [0.7523856, 2.2506030, 1.1379542],
     [1.0987933, 1.3578862, 0.2126343],
     [0.7835680, 2.9186479, 1.8296707],
-    [1.8139399, 1.5591685, 0.0],
+    [1.8139399, 1.5591685, 0.0000000],
     [0.9436658, 1.5667416, 0.2651598],
     [2.0875316, 1.4574247, 1.1136134],
     [1.7829821, 2.0335457, 1.7756639],
     [3.0812930, 0.6086476, 1.1863433],
     [2.8692957, 3.0200150, 0.3664296]
 ])
+Y = pd.DataFrame(data_y, columns=['Y1', 'Y2', 'Y3'])
 
-# X can be a list of lists or a NumPy array; here we include a categorical variable in the last column.
-X = [
+# Create DataFrame for X (predictor variables)
+data_x = [
     [1.02, 6.9, 'C'],
     [1.08, 6.7, 'A'],
     [1.14, 5.9, 'C'],
@@ -123,6 +123,15 @@ X = [
     [2.82, 6.9, 'B'],
     [2.89, 8.4, 'A']
 ]
+# Using the site names as the index
+index = ['Site1','Site2','Site3','Site4','Site5','Site6','Site7','Site8','Site9','Site10','Site11','Site12']
+X = pd.DataFrame(data_x, columns=['X1', 'X2', 'X3'], index=index)
+
+# Convert X and Y into lists of dictionaries and lists
+
+X = X.to_dict(orient="records")  # Convert each row to a dictionary (needed for categorical features)
+Y = Y.values.tolist()  # Convert DataFrame to list of lists
+
 
 # Build the MRT model with a maximum depth of 4.
 tree = build_tree(X, Y, max_depth=4)
